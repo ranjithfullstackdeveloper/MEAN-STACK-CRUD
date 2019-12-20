@@ -5,6 +5,13 @@ const List=require('./database/models/list');
 const Task=require('./database/models/task');
 app.use(express.json());
 const {ObjectId} = require('mongodb');
+const bodyParser=require('body-parser');
+const cors = require('cors');
+const User=require('./database/models/user');
+
+app.use(bodyParser.json());
+app.use(cors());
+//const ctrlUser = require('./database/controller/user.controller');
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Methods","GET, POST, HEAD, OPTIONS, PUT, PATCH, DELETE");
@@ -20,6 +27,7 @@ app.get('/lists',(req,res)=>{
         .catch((error)=>console.log(error));
 });
 app.post('/lists',(req,res)=>{
+    console.log('reqest.body',req.body);
         new List({'title':req.body.title})
         .save()
         .then((list)=>res.send(list))
@@ -76,7 +84,14 @@ app.delete('/lists/:listId/tasks/:taskId',(req,res)=>{
         .catch((error)=>console.log(error));
 });
 
-
+app.post('/register',(req,res,next)=>{
+    console.log('reqest.body',req.body);
+    (new User({'fullName':req.body.fullName, 'email': req.body.email, 'password': req.body.password}))
+    .save()
+    .then((user)=>res.send(user))
+    .catch((error)=>console.log(error));
+}
+);
 
 app.listen(3000,()=>
 console.log("Server is connected on port 3000"));
