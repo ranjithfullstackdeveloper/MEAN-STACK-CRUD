@@ -1,0 +1,9 @@
+.completed {
+  background: #cacaca;
+}
+a:active {
+  color: red;
+}
+li.list-group-item>a.active-link {
+  color: red;
+}

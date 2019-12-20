@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6"><ul class="list-group">
+      <li class="list-group-item active"> Persons
+    </li>
+    <li class="list-group-item" *ngFor="let list of lists"> <a [routerLink]="['/lists', list._id]" class="" routerLinkActive="active-link">
+      {{list.title}}
+        <span aria-hidden="true" class="close" aria-label="Close" (click)="deleteList(list)">&times;</span>
+    </a>
+    </li>
+
+
+  </ul>
+  <br>
+  <button type="button" class="btn btn-primary" routerLink="/new-list">Add Person</button>
+</div>
+    <div class="col-sm-6"><ul class="list-group">
+      <li class="list-group-item active"> Tasks
+    </li>
+    <li class="list-group-item" [class.completed]="task.completed" *ngFor="let task of tasks" (click)="onTaskClick(task)">
+    {{task.title}}
+        <span aria-hidden="true" class="close" aria-label="Close" (click)="deleteTask(task)">&times;</span>
+
+    </li>
+    </ul><br>
+    <button type="button" class="btn btn-primary" (click)="addTask()">Add Task</button></div>
+  </div>
+
+</div>
+

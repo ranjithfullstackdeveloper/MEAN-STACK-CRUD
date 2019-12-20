@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="form-group">
+    <h1>Create a new Task</h1>
+    <input type="text" #taskInput class="form-control" placeholder="Enter Task Name">
+    <button class="btn white-text" routerLink='../'>Cancel</button>
+    <button class="btn btn-primary" (click)="addTask(taskInput.value)">Add</button>
+
+  </div>
+
+</div>

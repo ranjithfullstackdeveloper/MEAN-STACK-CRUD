@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="form-group">
+    <h1>Create a new list</h1>
+    <input type="text" #listInput class="form-control" placeholder="Enter List Name">
+    <button class="btn white-text" routerLink='/'>Cancel</button>
+    <button class="btn btn-primary" (click)="addList(listInput.value)">Add</button>
+
+  </div>
+
+</div>
