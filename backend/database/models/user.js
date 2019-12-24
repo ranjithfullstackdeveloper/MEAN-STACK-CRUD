@@ -20,9 +20,6 @@ const UserSchema=new mongoose.Schema({
     saltSecret: String
 });
 
-UserSchema.plugin(uniqueValidator);
-
-
 UserSchema.path('email').validate((val) => {
     var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(val);
@@ -33,7 +30,7 @@ UserSchema.pre('save',function(next){
         bcrypt.hash(this.password,salt,(err,hash)=>{
             this.password=hash;
             this.saltSecret=salt;
-            console.log('Encryption is working');
+           // console.log('Encryption is working');
             next();
         });
     });
