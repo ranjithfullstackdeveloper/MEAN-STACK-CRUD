@@ -85,11 +85,20 @@ app.delete('/lists/:listId/tasks/:taskId',(req,res)=>{
 });
 
 app.post('/register',(req,res,next)=>{
-    console.log('reqest.body',req.body);
+   // console.log('reqest.body',req.body);
     (new User({'fullName':req.body.fullName, 'email': req.body.email, 'password': req.body.password}))
     .save()
     .then((user)=>res.send(user))
-    .catch((error)=>console.log(error));
+    .catch((error)=> {
+        var valErrors=[];
+        if(error.name === 'ValidationError') {
+            res.status(422).send(error.message);
+        }
+        else{
+            res.status(422).send(error.errmsg)
+        }
+    });
+    
 }
 );
 
