@@ -9,7 +9,8 @@ module.exports.register=(req,res,next)=>{
     user.save((err,doc)=>{
         if (!err)
         res.send(doc);
-        console.log('Ranjith ', doc)
+        else
+        console.log('Error Ranjith ', err);
     });
 
     console.log('registered user');
